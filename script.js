@@ -25,18 +25,19 @@ function average(firstNote, secondNote) {
   return (firstNote + secondNote) / 2;
 };
 
-function approvedOrDisapproved(average, student) {
-  return average >= 7 ? `Parabéns, ${student}! Você foi aprovado(a) no concurso!` : `Não foi dessa vez, ${student}! Tente novamente!`;
+function approvedOrDisapproved(averageStudent, student) {
+  return averageStudent >= 7 ? `Parabéns, ${student}! Você foi aprovado(a) no concurso!` : `Não foi dessa vez, ${student}! Tente novamente!`;
 };
 
-function printStudentGrade(student) {
+function printStudentGrade(student, averageStudent) {
   return `
-    A média do(a) aluno(a) ${student.name} é: ${average(student.firstNote, student.secondNote)}
-    ${approvedOrDisapproved(average(student.firstNote, student.secondNote), student.name)}
+    A média do(a) aluno(a) ${student.name} é: ${averageStudent}
+    ${approvedOrDisapproved(averageStudent, student.name)}
   `
 };
 
-for(let student of students) {
-  let message = printStudentGrade(student);
+for(const student of students) {
+  const averageStudent = average(student.firstNote, student.secondNote);
+  const message = printStudentGrade(student, averageStudent);
   alert(message);
 };
